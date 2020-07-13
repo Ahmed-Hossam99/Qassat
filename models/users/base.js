@@ -6,6 +6,11 @@ const Schema = mongoose.Schema;
 //   discriminatorKey: 'role',
 // }
 const userSchema = new Schema({
+  type: {
+    type: String,
+    enum: ['admin', 'delegate', 'client', 'partner', 'company']
+
+  },
   name: {
     type: String,
 
@@ -36,25 +41,32 @@ const userSchema = new Schema({
   notes: {
     type: String,
   },
-}, { timestamps: true, discriminatorKey: "role" });
-
-
-// this function fired automatically when user signup pefore user's save to encrypt password
-// userSchema.pre('save', async function (next) {
-//   try {
-//     // Generate a salt
-//     // 10 here = saltRonds => that take original password and addto this some random string before is gone to hash to protect it from (hash dictionary table)  
-//     const salt = await bcrypt.genSalt(10);
-//     // Generate a password hash (salt + hash)
-//     const passwordHash = await bcrypt.hash(this.password, salt);
-//     // Re-assign hashed version over original, plain text password
-//     console.log(this.password)
-//     this.password = passwordHash;
-//     console.log(passwordHash)
-//     next();
-//   } catch (error) {
-//     next(error);
-//   }
-// });
+  admin: {
+    type: Schema.Types.ObjectId,
+    ref: "Admin"
+  },
+  delegate: {
+    type: Schema.Types.ObjectId,
+    ref: "Delegates"
+  },
+  client: {
+    type: Schema.Types.ObjectId,
+    ref: "Clients"
+  },
+  company: {
+    type: Schema.Types.ObjectId,
+    ref: "Companies"
+  },
+  partner: {
+    type: Schema.Types.ObjectId,
+    ref: "Partners"
+  },
+  resetCode: {
+    type: String,
+  },
+  restCodeExpiration: {
+    type: Date
+  },
+}, { timestamps: true });
 
 module.exports = mongoose.model('Users', userSchema, 'Users');

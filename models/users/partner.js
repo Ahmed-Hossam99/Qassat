@@ -1,8 +1,8 @@
 const Base = require('./base');
 const mongoose = require('mongoose')
 
-
-const partner = Base.discriminator('partner', new mongoose.Schema({
+const Schema = mongoose.Schema;
+const partnerSchema = new Schema({
 
   receivedAmount: {
     type: String,
@@ -10,7 +10,6 @@ const partner = Base.discriminator('partner', new mongoose.Schema({
   retioInCapital: {
     type: String,
   },
-}),
-);
+})
 
-module.exports = mongoose.model('partner');
+module.exports = mongoose.model('Partners', partnerSchema, 'Partners');

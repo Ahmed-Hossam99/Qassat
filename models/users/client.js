@@ -1,17 +1,11 @@
 const Base = require('./base');
 const mongoose = require('mongoose')
-const client = Base.discriminator('client', new mongoose.Schema({
+const Schema = mongoose.Schema;
+const clientSchema = new Schema({
   favorite: [{
-
   }],
   code: {
     type: String,
-  },
-  resetCode: {
-    type: String,
-  },
-  restCodeExpiration: {
-    type: Date
   },
   confirmed: {
     type: Boolean,
@@ -27,7 +21,6 @@ const client = Base.discriminator('client', new mongoose.Schema({
   guarantor: {
     guarantoreName: {
       type: String,
-
     },
     guarantoreProfile: {
       type: String,
@@ -44,7 +37,7 @@ const client = Base.discriminator('client', new mongoose.Schema({
     },
   }
 
-}),
-);
+})
 
-module.exports = mongoose.model('client');
+
+module.exports = mongoose.model('Clients', clientSchema, 'Clients');

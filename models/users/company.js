@@ -1,8 +1,8 @@
 const Base = require('./base');
 const mongoose = require('mongoose')
+const Schema = mongoose.Schema;
 
-
-const company = Base.discriminator('company', new mongoose.Schema({
+const companySchema = new Schema({
 
   logo: {
     type: String,
@@ -10,7 +10,7 @@ const company = Base.discriminator('company', new mongoose.Schema({
   powers: {
     type: String,
   },
-}),
-);
+})
 
-module.exports = mongoose.model('company');
+
+module.exports = mongoose.model('Companies', companySchema, 'Companies');
