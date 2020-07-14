@@ -35,7 +35,11 @@ const clientSchema = new Schema({
     guarantoreNotes: {
       type: String,
     },
-  }
+  },
+  user: {
+    type: Schema.Types.ObjectId,
+    ref: "Users"
+  },
 
 })
 

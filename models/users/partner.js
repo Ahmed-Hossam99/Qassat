@@ -10,6 +10,11 @@ const partnerSchema = new Schema({
   retioInCapital: {
     type: String,
   },
+
+  user: {
+    type: Schema.Types.ObjectId,
+    ref: "Users"
+  },
 })
 
 module.exports = mongoose.model('Partners', partnerSchema, 'Partners');

@@ -10,6 +10,10 @@ const companySchema = new Schema({
   powers: {
     type: String,
   },
+  user: {
+    type: Schema.Types.ObjectId,
+    ref: "Users"
+  },
 })
 
 
